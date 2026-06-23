@@ -1,12 +1,106 @@
 ﻿<Window x:Class="Zadanie_2.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Zadanie_2"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="Zadanie 2" Height="600" Width="900">
 
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="BorderThickness" Value="5"/>
+            <Setter Property="Margin" Value="3"/>
+            <Setter Property="Padding" Value="15,5"/>
+            <Setter Property="Background" Value="#E0E0E0"/>
+            <Setter Property="BorderBrush" Value="DimGray"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" 
+                                Background="{TemplateBinding Background}" 
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="LightBlue"/>
+                                <Setter TargetName="border" Property="BorderBrush" Value="RoyalBlue"/>
+                                <Setter Property="Foreground" Value="RoyalBlue"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="LightCoral"/>
+                                <Setter TargetName="border" Property="BorderBrush" Value="DarkRed"/>
+                                <Setter Property="Foreground" Value="DarkRed"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="SpecialButtonStyle" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+            <Setter Property="Background" Value="Gold"/>
+            <Setter Property="BorderBrush" Value="DarkOrange"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <ScrollViewer Grid.Row="0" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+            <StackPanel Orientation="Horizontal" Background="#F5F5F5">
+                <Button Content="Górny 1"/>
+                <Button Content="Górny 2"/>
+                <Button Content="Górny Specjalny" Style="{StaticResource SpecialButtonStyle}"/>
+                <Button Content="Górny 3"/>
+                <Button Content="Górny 4"/>
+            </StackPanel>
+        </ScrollViewer>
+
+        <Grid Grid.Row="1" Margin="0,5,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <ScrollViewer Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Margin="0,0,5,0" 
+                          VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                <StackPanel Orientation="Vertical" Background="#F5F5F5" MinWidth="120">
+                    <StackPanel.Resources>
+                        <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                            <Setter Property="Background" Value="LightGreen"/>
+                        </Style>
+                    </StackPanel.Resources>
+
+                    <Button Content="Lewy 1"/>
+                    <Button Content="Lewy Specjalny" Style="{StaticResource SpecialButtonStyle}"/>
+                    <Button Content="Lewy 2"/>
+                    <Button Content="Lewy 3"/>
+                    <Button Content="Lewy 4"/>
+                </StackPanel>
+            </ScrollViewer>
+
+            <Border Grid.Row="0" Grid.Column="1" Margin="0,0,0,5" 
+                    BorderBrush="DarkGray" BorderThickness="2" Background="White">
+                <TextBlock Text="?" FontSize="72" Foreground="LightGray" 
+                           HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
+
+            <ScrollViewer Grid.Row="1" Grid.Column="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+                <StackPanel Orientation="Horizontal" Background="#F5F5F5">
+                    <Button Content="Dolny 1"/>
+                    <Button Content="Dolny Specjalny" Style="{StaticResource SpecialButtonStyle}"/>
+                    <Button Content="Dolny 2"/>
+                    <Button Content="Dolny 3"/>
+                </StackPanel>
+            </ScrollViewer>
+
+        </Grid>
     </Grid>
 </Window>
